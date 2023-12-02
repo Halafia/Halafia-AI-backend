@@ -12,7 +12,7 @@ app.config.from_mapping(
 
 app.register_error_handler(404, page_not_found)
 
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/prompt', methods = ['POST', 'GET'])
 def index():
 
     if request.method == 'POST':
