@@ -1,5 +1,5 @@
 import os
-import key
+from . import key
 from langchain.document_loaders import DirectoryLoader, TextLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.chains import LLMChain

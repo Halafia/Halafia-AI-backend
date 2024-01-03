@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-import halafia
+#import halafia
 
 
 app = Flask(__name__)
@@ -7,28 +7,27 @@ app.config.from_mapping(
     SECRET_KEY='HALAFIA')
 
 
-@app.route('/')
+@app.route('/404')
 def page_not_found():
     return render_template('404.html'), 404
 
 app.register_error_handler(404, page_not_found)
 
-@app.route('/prompt', methods = ['POST', 'GET'])
+@app.route('/', methods = ['POST', 'GET'])
 def index():
-
     if request.method == 'POST':
-        prompt = request.form['prompt']
-#        dob = request.form['dob']
-#        allegries = request.form['allegries']
-#        medication = request.form['medication']
-#        blood_group = request.form['bloodgroup']
-#        location = request.form['location']
+            email = request.form.get('email')
+            message = request.form.get('message')
 
-        res = {}
-        res['response'] = halafia.alternate_risk_assessment(prompt)
-        return jsonify(res), 200
+    return render_template('index.html'), 200
 
-    return render_template('index.html')
+
+@app.route('/form', methods = ['POST', 'GET'])
+def form():
+        
+        return render_template('form.html'), 204
+
+
 
 if __name__ == '__main__':
     app.run(
